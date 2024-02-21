@@ -1,0 +1,46 @@
+@for (question of questions.getQuestions(); track questions.getQuestions()) {
+<div class="flex flex-col items-center justify-center pt-8">
+  <p class="inline-block p-4 rounded-xl bg-yellow-200 max-w-[50%] text-lg">
+    {{ question.question }}
+  </p>
+  @if (question.type === 'multiple') {
+  <ul>
+    @for (choice of question.incorrect_answers; track choice; let i = $index) {
+    <li class="flex items-center gap-4 p-4">
+      <button
+        class="flex items-center justify-center w-12 h-12 transition-all bg-green-700 rounded-full hover:bg-green-900"
+      >
+        <span class="font-bold text-white">{{ i + 1 }}</span>
+      </button>
+      <h2 class="max-w-[40rem]">
+        {{ choice }}
+      </h2>
+    </li>
+    }
+    <li class="flex items-center gap-4 p-4">
+      <button
+        class="flex items-center justify-center w-12 h-12 transition-all bg-green-700 rounded-full hover:bg-green-900"
+      >
+        <span class="font-bold text-white">✅</span>
+      </button>
+      <h2 class="max-w-[40rem]">
+        {{ question.correct_answer }}
+      </h2>
+    </li>
+  </ul>
+  } @if (question.type === 'boolean') {
+  <ul class="flex gap-8 pt-8">
+    <li>
+      <button class="p-4 text-white bg-green-600 rounded-sm">
+        True @if (question.correct_answer === 'True') {✅}
+      </button>
+    </li>
+    <li>
+      <button class="p-4 text-white bg-red-800 rounded-sm">
+        False @if (question.correct_answer === 'False') {✅}
+      </button>
+    </li>
+  </ul>
+  }
+</div>
+}
