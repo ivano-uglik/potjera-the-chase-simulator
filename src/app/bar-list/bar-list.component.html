@@ -1,0 +1,5 @@
+<ul class="inline-flex flex-col gap-1 bg-gray-800 border-8 border-black">
+  @for (item of barManager.array; track barManager; let i = $index) {
+  <app-bar [price]="item.price" [isChaser]="item.isChaser"></app-bar>
+  }
+</ul>
