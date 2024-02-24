@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Red Hat Display";
+  src: url("assets/RedHatDisplay-VariableFont.ttf");
+}
+
+.red-hat {
+  font-family: "Red Hat Display";
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+  background-color: #0d0d1b;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1e00f8;
+}

@@ -1,0 +1,29 @@
+<div
+  class="h-screen text-white w-screen bg-[#202124] grid place-items-center absolute top-0 left-0 z-50"
+  [class.hidden]="isPressed"
+>
+  <div>
+    <h1 class="text-5xl font-[900] text-center red-hat pt-20 pb-8">
+      Dobrodošli na
+      <span
+        class="text-transparent bg-gradient-to-r from-red-400 to-indigo-500 bg-clip-text"
+      >
+        Potjeru!
+      </span>
+    </h1>
+    <p class="max-w-[48rem] mx-auto text-lg text-center">
+      Doživite uzbuđenje kviza "Potjera" iz udobnosti svog doma! Pripremite se
+      za nezaboravno iskustvo u kojem se suočavate sa lovcima dok pokušavate
+      osvojiti veliki novčani iznos. Jeste li spremni za izazov? Pokažite svoje
+      znanje i testirajte svoju sreću!
+    </p>
+    <div class="flex justify-center py-8">
+      <button
+        class="text-2xl uppercase font-bold red-hat bg-gradient-to-r from-red-400 to-indigo-500 text-[#212121] px-6 py-2 rounded-full transition-all hover:scale-125 duration-500"
+        (click)="startGame()"
+      >
+        Započni igru
+      </button>
+    </div>
+  </div>
+</div>
