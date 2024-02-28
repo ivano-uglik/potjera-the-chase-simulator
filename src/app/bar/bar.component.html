@@ -1,13 +1,16 @@
 <li>
   <span
-    class="flex items-center justify-center w-64 h-16 p-4 text-3xl font-bold text-center text-white
-      {{
-      isChaser
-        ? 'bg-red-600'
-        : isChaser === false
-        ? 'bg-blue-600'
-        : isChaser === null && 'bg-gray-200'
-    }}"
-    >{{ price }}</span
+    class="flex items-center justify-between w-64 h-16 p-4 text-3xl font-bold text-center text-white"
+    [class.bg-blue-600]="role === 'candidate'"
+    [class.bg-red-600]="role === 'chaser'"
+    [class.bg-gray-200]="role === 'empty'"
   >
+    @if (price) {
+    <span class="animate-wiggle-right"> ▹ </span>
+    }
+    {{ price }}
+    @if (price) {
+    <span class="animate-wiggle-left"> ◃ </span>
+    }
+  </span>
 </li>

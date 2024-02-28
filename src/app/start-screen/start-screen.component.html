@@ -1,9 +1,9 @@
 <div
-  class="h-screen text-white w-screen bg-[#202124] grid place-items-center absolute top-0 left-0 z-50"
-  [class.hidden]="isPressed"
+  class="min-h-screen text-white w-screen bg-[#202124] grid place-items-center absolute top-0 left-0 z-50 px-4"
+  [class.hidden]="step > 2"
 >
-  <div>
-    <h1 class="text-5xl font-[900] text-center red-hat pt-20 pb-8">
+  <div [class.hidden]="step !== 0">
+    <h1 class="text-5xl font-[900] text-center red-hat pb-8">
       Dobrodošli na
       <span
         class="text-transparent bg-gradient-to-r from-red-400 to-indigo-500 bg-clip-text"
@@ -20,10 +20,70 @@
     <div class="flex justify-center py-8">
       <button
         class="text-2xl uppercase font-bold red-hat bg-gradient-to-r from-red-400 to-indigo-500 text-[#212121] px-6 py-2 rounded-full transition-all hover:scale-125 duration-500"
-        (click)="startGame()"
+        (click)="addStep()"
       >
         Započni igru
       </button>
     </div>
+  </div>
+  <div
+    [class.hidden]="step !== 1"
+    class="max-w-[48rem] flex flex-col gap-8 text-lg"
+  >
+    <h1
+      class="font-[900] text-center red-hat text-5xl text-transparent bg-gradient-to-r from-red-400 to-indigo-500 bg-clip-text py-2"
+    >
+      Potjera
+    </h1>
+    <p>
+      Druga faza igre "Potjera" počinje nakon što se završi jednominutno brzo
+      krug pitanja. U ovoj fazi, kandidat i lovac suočavaju se u seriji pitanja
+      s mogućim odgovorima a, b i c. Cilj je izbjeći da vas lovci uhvate. Na
+      zaslonu se prikazuje traka koja prati napredovanje kandidata i lovca.
+    </p>
+    <p>
+      U ovoj fazi, kandidat i lovac odgovaraju na ista pitanja. Ako kandidat
+      odgovori točno, napreduje na traci, dok lovac ostaje na mjestu. Međutim,
+      ako kandidat odgovori netočno, lovac napreduje prema kandidatu na traci.
+      Cilj kandidata je stići do kraja trake prije nego što ih lovac uhvati.
+    </p>
+    <p>
+      Ova faza igre zahtijeva brzo razmišljanje i dobro procjenjivanje rizika,
+      jer svaki netočan odgovor približava lovca kandidatu. Kandidati moraju
+      pažljivo odvagnuti svoje mogućnosti i odlučiti hoće li se usuditi na veći
+      rizik za veći iznos novca ili će radije izabrati sigurniju opciju s manjim
+      rizikom.
+    </p>
+    <p>
+      Prije početka igre, kandidat mora odabrati između dvije opcije: želi li
+      imati značajno više novca ako pobijedi, ali biti bliži lovcu i time imati
+      veći rizik ili želi biti ugodniji s nižim iznosom novca, ali s manjim
+      rizikom.
+    </p>
+    <div class="flex justify-center py-8">
+      <button
+        class="text-2xl uppercase font-bold red-hat bg-gradient-to-r from-red-400 to-indigo-500 text-[#212121] px-6 py-2 rounded-full transition-all hover:scale-125 duration-500"
+        (click)="addStep()"
+      >
+        Pogledaj opcije
+      </button>
+    </div>
+  </div>
+  <div [class.hidden]="step !== 2">
+    <ul class="inline-flex flex-col gap-1 bg-gray-800 border-8 border-black">
+      <app-bar></app-bar>
+      <button (click)="barManager.higher(); addStep()">
+        <app-bar price="5.000€" role="candidate"></app-bar>
+      </button>
+      <button (click)="barManager.middle(); addStep()">
+        <app-bar price="1.000€" role="candidate"></app-bar>
+      </button>
+      <button (click)="barManager.lower(); addStep()">
+        <app-bar price="250€" role="candidate"></app-bar>
+      </button>
+      <app-bar></app-bar>
+      <app-bar></app-bar>
+      <app-bar></app-bar>
+    </ul>
   </div>
 </div>

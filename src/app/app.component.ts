@@ -6,6 +6,8 @@ import { ChaserStepComponent } from './chaser-step/chaser-step.component';
 import { QuestionComponent } from './question/question.component';
 import { NextStepComponent } from './next-step/next-step.component';
 import { StartScreenComponent } from './start-screen/start-screen.component';
+import { StartingPositionBarListComponent } from './starting-position-bar-list/starting-position-bar-list.component';
+import { GameOverComponent } from './game-over/game-over.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +20,7 @@ import { StartScreenComponent } from './start-screen/start-screen.component';
     QuestionComponent,
     NextStepComponent,
     StartScreenComponent,
+    GameOverComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

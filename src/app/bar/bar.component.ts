@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './bar.component.css',
 })
 export class BarComponent {
-  @Input() price?: string;
-  @Input() isChaser: boolean | null = null;
+  @Input() index: number = 0;
+  @Input() role? = 'empty';
+  @Input() price? = '';
 }

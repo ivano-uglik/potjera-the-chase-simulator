@@ -1,5 +1,37 @@
 <ul class="inline-flex flex-col gap-1 bg-gray-800 border-8 border-black">
-  @for (item of barManager.array; track barManager; let i = $index) {
-  <app-bar [price]="item.price" [isChaser]="item.isChaser"></app-bar>
-  }
+  <app-bar
+    [index]="barManager.barData[0].index"
+    [role]="barManager.barData[0].role"
+    [price]="barManager.barData[0].price"
+  ></app-bar>
+  <app-bar
+    [index]="barManager.barData[1].index"
+    [role]="barManager.barData[1].role"
+    [price]="barManager.barData[1].price"
+  ></app-bar>
+  <app-bar
+    [index]="barManager.barData[2].index"
+    [role]="barManager.barData[2].role"
+    [price]="barManager.barData[2].price"
+  ></app-bar>
+  <app-bar
+    [index]="barManager.barData[3].index"
+    [role]="barManager.barData[3].role"
+    [price]="barManager.barData[3].price"
+  ></app-bar>
+  <app-bar
+    [index]="barManager.barData[4].index"
+    [role]="barManager.barData[4].role"
+    [price]="barManager.barData[4].price"
+  ></app-bar>
+  <app-bar
+    [index]="barManager.barData[5].index"
+    [role]="barManager.barData[5].role"
+    [price]="barManager.barData[5].price"
+  ></app-bar>
+  <app-bar
+    [index]="barManager.barData[6].index"
+    [role]="barManager.barData[6].role"
+    [price]="barManager.barData[6].price"
+  ></app-bar>
 </ul>

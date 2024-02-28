@@ -4,42 +4,83 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class BarManagerService {
-  chaser = [false, false, false, false, false, false, false];
-  candidate = [false, true, false, false, false, false, false];
-  private createArrayWithItems(
-    numberOfItems: number,
-    chaserProvider: boolean[],
-    candidateProvider: boolean[]
-  ) {
-    let newArray = [];
-    for (let i = 0; i < numberOfItems; i++) {
-      newArray.push({
-        isChaser: chaserProvider[i]
-          ? true
-          : candidateProvider[i]
-          ? false
-          : null,
-        price: candidateProvider[i] && !chaserProvider[i] ? '1.500€' : '',
-      });
-    }
-    return newArray;
+  barData = [
+    { index: 0, role: 'empty' },
+    { index: 1, role: 'candidate', price: '5.000€' },
+    { index: 2, role: 'empty', price: '' },
+    { index: 3, role: 'empty', price: '' },
+    { index: 4, role: 'empty', price: '' },
+    { index: 5, role: 'empty', price: '' },
+    { index: 6, role: 'empty', price: '' },
+  ];
+  changeBarData(newBarData: [{ index: number; role: string }]) {
+    this.barData = newBarData;
   }
-  array = this.createArrayWithItems(7, this.chaser, this.candidate);
-  constructor() {}
-  moveChaser() {
-    let lastIndex = -1;
-    for (let i: number = 0; i < this.array.length; i++) {
-      if (this.array[i].isChaser === true) {
-        lastIndex = i;
+
+  addChaserDown() {
+    let highestChaserIndex = -1;
+    this.barData.forEach((bar) => {
+      if (bar.role === 'chaser' && bar.index > highestChaserIndex) {
+        highestChaserIndex = bar.index;
       }
+    });
+    const newChaserIndex = highestChaserIndex + 1;
+    if (this.barData[highestChaserIndex + 1].role === 'candidate') {
+      return console.log('game over!');
     }
-    this.chaser[lastIndex + 1] = true;
-    this.array = this.createArrayWithItems(7, this.chaser, this.candidate);
+    this.barData[newChaserIndex] = { index: newChaserIndex, role: 'chaser' };
   }
-  moveCandidate() {
-    const trueIndex = this.candidate.indexOf(true);
-    this.candidate = [false, false, false, false, false, false, false];
-    this.candidate[trueIndex + 1] = true;
-    this.array = this.createArrayWithItems(7, this.chaser, this.candidate);
+
+  moveCandidateDown() {
+    let highestCandidateIndex = 99;
+    this.barData.forEach((bar) => {
+      if (bar.role === 'candidate' && bar.index < highestCandidateIndex) {
+        highestCandidateIndex = bar.index;
+      }
+    });
+    const newCandidateIndex = highestCandidateIndex + 1;
+    this.barData[newCandidateIndex] = {
+      index: newCandidateIndex,
+      role: 'candidate',
+      price: this.barData[highestCandidateIndex].price,
+    };
+    this.barData[highestCandidateIndex] = {
+      index: highestCandidateIndex,
+      role: 'empty',
+      price: '',
+    };
+  }
+  higher() {
+    this.barData = [
+      { index: 0, role: 'empty' },
+      { index: 1, role: 'candidate', price: '5.000€' },
+      { index: 2, role: 'candidate', price: '' },
+      { index: 3, role: 'candidate', price: '' },
+      { index: 4, role: 'candidate', price: '' },
+      { index: 5, role: 'candidate', price: '' },
+      { index: 6, role: 'candidate', price: '' },
+    ];
+  }
+  middle() {
+    this.barData = [
+      { index: 0, role: 'empty' },
+      { index: 1, role: 'empty', price: '' },
+      { index: 2, role: 'candidate', price: '1.000€' },
+      { index: 3, role: 'empty', price: '' },
+      { index: 4, role: 'empty', price: '' },
+      { index: 5, role: 'empty', price: '' },
+      { index: 6, role: 'empty', price: '' },
+    ];
+  }
+  lower() {
+    this.barData = [
+      { index: 0, role: 'empty' },
+      { index: 1, role: 'empty', price: '' },
+      { index: 2, role: 'empty', price: '' },
+      { index: 3, role: 'candidate', price: '250€' },
+      { index: 4, role: 'empty', price: '' },
+      { index: 5, role: 'empty', price: '' },
+      { index: 6, role: 'empty', price: '' },
+    ];
   }
 }
