@@ -10,7 +10,9 @@
   <app-bar-list></app-bar-list>
   <app-next-step></app-next-step>
 </div>
-} @if (this.manager.isGameOver) {
+@if (!this.manager.questionView) {
+<app-question [index]="manager.question"></app-question>
+} } @if (this.manager.isGameOver) {
 <app-game-over></app-game-over>
 } @if(this.manager.isWon) {
 <app-victory></app-victory>

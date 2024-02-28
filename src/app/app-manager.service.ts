@@ -8,6 +8,8 @@ export class AppManagerService {
   isGameOver = false;
   isWon = false;
   startStep = 0;
+  question = 0;
+  questionView = false;
   addStartStep() {
     this.startStep++;
   }
@@ -21,5 +23,11 @@ export class AppManagerService {
   }
   setStartStep(value: number) {
     this.startStep = value;
+  }
+  nextQuestion() {
+    this.question++;
+  }
+  setQuestionView() {
+    this.questionView = !this.questionView;
   }
 }

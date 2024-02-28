@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { QuestionProviderService } from '../question-provider.service';
+import { AppManagerService } from '../app-manager.service';
+import { BarManagerService } from '../bar-manager.service';
 
 @Component({
   selector: 'app-question',
@@ -10,4 +12,7 @@ import { QuestionProviderService } from '../question-provider.service';
 })
 export class QuestionComponent {
   questions = inject(QuestionProviderService);
+  manager = inject(AppManagerService);
+  barManager = inject(BarManagerService);
+  @Input() index: number = 0;
 }
