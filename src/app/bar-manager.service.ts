@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { AppManagerService } from './app-manager.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BarManagerService {
+  manager = inject(AppManagerService);
   barData = [
     { index: 0, role: 'empty' },
     { index: 1, role: 'candidate', price: '5.000€' },
@@ -26,12 +28,15 @@ export class BarManagerService {
     });
     const newChaserIndex = highestChaserIndex + 1;
     if (this.barData[highestChaserIndex + 1].role === 'candidate') {
-      return console.log('game over!');
+      this.manager.setGameOver();
     }
     this.barData[newChaserIndex] = { index: newChaserIndex, role: 'chaser' };
   }
 
   moveCandidateDown() {
+    if (this.barData[6].price != '') {
+      this.manager.setWon();
+    }
     let highestCandidateIndex = 99;
     this.barData.forEach((bar) => {
       if (bar.role === 'candidate' && bar.index < highestCandidateIndex) {
@@ -66,10 +71,10 @@ export class BarManagerService {
       { index: 0, role: 'empty' },
       { index: 1, role: 'empty', price: '' },
       { index: 2, role: 'candidate', price: '1.000€' },
-      { index: 3, role: 'empty', price: '' },
-      { index: 4, role: 'empty', price: '' },
-      { index: 5, role: 'empty', price: '' },
-      { index: 6, role: 'empty', price: '' },
+      { index: 3, role: 'candidate', price: '' },
+      { index: 4, role: 'candidate', price: '' },
+      { index: 5, role: 'candidate', price: '' },
+      { index: 6, role: 'candidate', price: '' },
     ];
   }
   lower() {
@@ -78,9 +83,9 @@ export class BarManagerService {
       { index: 1, role: 'empty', price: '' },
       { index: 2, role: 'empty', price: '' },
       { index: 3, role: 'candidate', price: '250€' },
-      { index: 4, role: 'empty', price: '' },
-      { index: 5, role: 'empty', price: '' },
-      { index: 6, role: 'empty', price: '' },
+      { index: 4, role: 'candidate', price: '' },
+      { index: 5, role: 'candidate', price: '' },
+      { index: 6, role: 'candidate', price: '' },
     ];
   }
 }

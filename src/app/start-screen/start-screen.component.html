@@ -1,8 +1,7 @@
 <div
   class="min-h-screen text-white w-screen bg-[#202124] grid place-items-center absolute top-0 left-0 z-50 px-4"
-  [class.hidden]="step > 2"
 >
-  <div [class.hidden]="step !== 0">
+  <div [class.hidden]="this.manager.startStep !== 0">
     <h1 class="text-5xl font-[900] text-center red-hat pb-8">
       Dobrodošli na
       <span
@@ -20,14 +19,14 @@
     <div class="flex justify-center py-8">
       <button
         class="text-2xl uppercase font-bold red-hat bg-gradient-to-r from-red-400 to-indigo-500 text-[#212121] px-6 py-2 rounded-full transition-all hover:scale-125 duration-500"
-        (click)="addStep()"
+        (click)="this.manager.addStartStep()"
       >
         Započni igru
       </button>
     </div>
   </div>
   <div
-    [class.hidden]="step !== 1"
+    [class.hidden]="this.manager.startStep !== 1"
     class="max-w-[48rem] flex flex-col gap-8 text-lg"
   >
     <h1
@@ -63,22 +62,22 @@
     <div class="flex justify-center py-8">
       <button
         class="text-2xl uppercase font-bold red-hat bg-gradient-to-r from-red-400 to-indigo-500 text-[#212121] px-6 py-2 rounded-full transition-all hover:scale-125 duration-500"
-        (click)="addStep()"
+        (click)="this.manager.addStartStep()"
       >
         Pogledaj opcije
       </button>
     </div>
   </div>
-  <div [class.hidden]="step !== 2">
+  <div [class.hidden]="this.manager.startStep !== 2">
     <ul class="inline-flex flex-col gap-1 bg-gray-800 border-8 border-black">
       <app-bar></app-bar>
-      <button (click)="barManager.higher(); addStep()">
+      <button (click)="barManager.higher(); this.manager.addStartStep()">
         <app-bar price="5.000€" role="candidate"></app-bar>
       </button>
-      <button (click)="barManager.middle(); addStep()">
+      <button (click)="barManager.middle(); this.manager.addStartStep()">
         <app-bar price="1.000€" role="candidate"></app-bar>
       </button>
-      <button (click)="barManager.lower(); addStep()">
+      <button (click)="barManager.lower(); this.manager.addStartStep()">
         <app-bar price="250€" role="candidate"></app-bar>
       </button>
       <app-bar></app-bar>

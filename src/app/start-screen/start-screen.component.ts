@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { BarListComponent } from '../bar-list/bar-list.component';
 import { BarComponent } from '../bar/bar.component';
 import { BarManagerService } from '../bar-manager.service';
+import { AppManagerService } from '../app-manager.service';
 
 @Component({
   selector: 'app-start-screen',
@@ -12,8 +13,5 @@ import { BarManagerService } from '../bar-manager.service';
 })
 export class StartScreenComponent {
   barManager = inject(BarManagerService);
-  step = 0;
-  addStep() {
-    this.step++;
-  }
+  manager = inject(AppManagerService);
 }

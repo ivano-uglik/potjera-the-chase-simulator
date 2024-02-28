@@ -2,17 +2,18 @@
   class="min-h-screen text-white w-screen bg-[#202124] grid place-items-center absolute top-0 left-0 z-50 px-4"
 >
   <div>
+    <h1 class="py-8 text-5xl text-center">👑</h1>
     <h1 class="text-5xl font-[900] text-center red-hat pb-8">
       <span
         class="text-transparent bg-gradient-to-r from-red-400 to-indigo-500 bg-clip-text"
       >
-        GAME OVER!
+        Pobjeda!
       </span>
     </h1>
     <div class="flex justify-center py-8">
       <button
         class="text-2xl uppercase font-bold red-hat bg-gradient-to-r from-red-400 to-indigo-500 text-[#212121] px-6 py-2 rounded-full transition-all hover:scale-125 duration-500"
-        (click)="this.manager.setGameOver(); this.manager.setStartStep(0)"
+        (click)="this.manager.setWon(); this.manager.setStartStep(0)"
       >
         Nova igra
       </button>
