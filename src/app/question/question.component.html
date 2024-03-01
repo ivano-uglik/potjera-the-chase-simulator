@@ -6,60 +6,59 @@
       <p
         class="inline-block p-4 rounded-xl bg-yellow-200 max-w-[40rem] text-lg"
       >
-        {{ questions.questions[index].question }} {{ index }}
+        {{ questions[index].question }}
       </p>
-      @if (questions.questions[index].type === 'multiple') {
+      @if (questions[index].type === 'multiple') { @if (randomOrder === true) {}
       <ul class="flex flex-wrap items-center justify-center gap-4 py-4">
-        @for (choice of questions.questions[index].incorrect_answers; track
-        choice; let i = $index) {
-        <li class="flex items-center gap-4 p-4">
+        <li class="flex items-center gap-4 p-4" (click)="incorrectClick()">
           <button
             class="flex items-center justify-center w-12 h-12 transition-all bg-green-700 rounded-full hover:bg-green-900"
           >
-            <span class="font-bold text-white">{{ i + 1 }}</span>
+            <span class="font-bold text-white">a</span>
           </button>
           <h2 class="max-w-[40rem]">
-            {{ choice }}
+            {{ questions[index].incorrect_answers[0] }}
           </h2>
         </li>
-        }
-        <li
-          class="flex items-center gap-4 p-4"
-          (click)="manager.setQuestionView(); barManager.moveCandidateDown()"
-        >
+        <li class="flex items-center gap-4 p-4" (click)="correctClick()">
           <button
             class="flex items-center justify-center w-12 h-12 transition-all bg-green-700 rounded-full hover:bg-green-900"
           >
-            <span class="font-bold text-white">✅</span>
+            <span class="font-bold text-white">
+              <!-- ✅ -->
+              3
+            </span>
           </button>
           <h2 class="max-w-[40rem]">
-            {{ questions.questions[index].correct_answer }}
+            {{ questions[index].correct_answer }}
           </h2>
         </li>
       </ul>
-      } @if (questions.questions[index].type === 'boolean') {
+      } @if (questions[index].type === 'boolean') {
+
       <ul class="flex gap-8 pt-8">
         <li
           (click)="
-            questions.questions[index].correct_answer === 'True' &&
-              manager.setQuestionView();
-            barManager.moveCandidateDown()
+            questions[index].correct_answer === 'True'
+              ? correctClick()
+              : incorrectClick()
           "
         >
           <button class="p-4 text-white bg-green-600 rounded-sm">
-            True @if (questions.questions[index].correct_answer === 'True') {✅}
+            True
+            <!-- @if (questions[index].correct_answer === 'True') {✅} -->
           </button>
         </li>
         <li
           (click)="
-            questions.questions[index].correct_answer === 'False' &&
-              manager.setQuestionView();
-            barManager.moveCandidateDown()
+            questions[index].correct_answer === 'False'
+              ? correctClick()
+              : incorrectClick()
           "
         >
           <button class="p-4 text-white bg-red-800 rounded-sm">
-            False @if (questions.questions[index].correct_answer === 'False')
-            {✅}
+            False
+            <!-- @if (questions[index].correct_answer === 'False') {✅} -->
           </button>
         </li>
       </ul>
