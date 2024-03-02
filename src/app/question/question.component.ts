@@ -16,7 +16,18 @@ export class QuestionComponent {
   questions = this.callQuestions;
   manager = inject(AppManagerService);
   barManager = inject(BarManagerService);
-  randomOrder = Math.random() >= 0.5;
+  getRandomNumber() {
+    const randomNumber = Math.random();
+
+    if (randomNumber < 0.33) {
+      return 1;
+    } else if (randomNumber < 0.66) {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+  randomOrder = this.getRandomNumber();
   // if(randomOrder === false ) put correct in position 1
   // if(randomOrder === true ) put correct in position 2
   // if(randomOrder === ??? ) put correct in position 3
