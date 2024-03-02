@@ -33,11 +33,17 @@ export class QuestionComponent {
   // if(randomOrder === ??? ) put correct in position 3
   @Input() index: number = 0;
   incorrectClick() {
-    this.barManager.addChaserDown();
     this.manager.setQuestionView();
+    if (Math.random() < 0.8) {
+      this.barManager.addChaserDown();
+    }
   }
+
   correctClick() {
     this.manager.setQuestionView();
     this.barManager.moveCandidateDown();
+    if (Math.random() < 0.9) {
+      this.barManager.addChaserDown();
+    }
   }
 }
