@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "potjera-bar",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

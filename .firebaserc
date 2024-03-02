@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "potjera-fb488": {
+      "hosting": {
+        "potjera-bar": [
+          "potjera"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "potjera-fb488"
+  }
+}

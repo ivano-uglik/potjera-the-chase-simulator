@@ -28,9 +28,6 @@ export class QuestionComponent {
     }
   }
   randomOrder = this.getRandomNumber();
-  // if(randomOrder === false ) put correct in position 1
-  // if(randomOrder === true ) put correct in position 2
-  // if(randomOrder === ??? ) put correct in position 3
   @Input() index: number = 0;
   incorrectClick() {
     this.manager.setQuestionView();

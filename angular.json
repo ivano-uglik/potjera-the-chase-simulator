@@ -88,6 +88,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "potjera-bar:build:production",
+              "serveTarget": "potjera-bar:serve:production"
+            },
+            "development": {
+              "buildTarget": "potjera-bar:build:development",
+              "serveTarget": "potjera-bar:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
