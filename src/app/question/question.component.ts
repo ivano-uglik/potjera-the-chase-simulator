@@ -2,6 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { QuestionProviderService } from '../question-provider.service';
 import { AppManagerService } from '../app-manager.service';
 import { BarManagerService } from '../bar-manager.service';
+import { FirebaseService } from '../firebase.service';
 
 @Component({
   selector: 'app-question',
@@ -16,6 +17,15 @@ export class QuestionComponent {
   questions = this.callQuestions;
   manager = inject(AppManagerService);
   barManager = inject(BarManagerService);
+  questionsService = inject(FirebaseService);
+  ngOnInit(): void {
+    this.questionsService.getQuestionsCollection().subscribe((questions) => {
+      this.questionsService = questions;
+      console.log(`retrivied from firebase + ${this.questionsService}`);
+    });
+    console.log('SHUFFLED QUESTIONS: ');
+    console.log(this.questions);
+  }
   getRandomNumber() {
     const randomNumber = Math.random();
 
