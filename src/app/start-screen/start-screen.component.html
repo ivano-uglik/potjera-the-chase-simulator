@@ -1,5 +1,5 @@
 <div
-  class="min-h-screen text-white w-screen bg-[#202124] grid place-items-center absolute top-0 left-0 z-50 px-4"
+  class="absolute top-0 left-0 z-50 grid w-screen min-h-screen px-4 text-white place-items-center"
 >
   <div [class.hidden]="this.manager.startStep !== 0">
     <h1 class="text-5xl font-[900] text-center red-hat pb-8">
@@ -69,7 +69,10 @@
     </div>
   </div>
   <div [class.hidden]="this.manager.startStep !== 2">
-    <ul class="inline-flex flex-col gap-1 bg-gray-800 border-8 border-black">
+    <question-categories></question-categories>
+  </div>
+  <div [class.hidden]="this.manager.startStep !== 3">
+    <ul class="inline-flex flex-col gap-1 border-8 border-black">
       <app-bar></app-bar>
       <button (click)="barManager.higher(); this.manager.addStartStep()">
         <app-bar price="5.000€" role="candidate"></app-bar>

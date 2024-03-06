@@ -21,10 +21,8 @@ export class QuestionComponent {
   ngOnInit(): void {
     this.questionsService.getQuestionsCollection().subscribe((questions) => {
       this.questionsService = questions;
-      console.log(`retrivied from firebase + ${this.questionsService}`);
+      // console.log(`retrivied from firebase + ${this.questionsService}`);
     });
-    console.log('SHUFFLED QUESTIONS: ');
-    console.log(this.questions);
   }
   getRandomNumber() {
     const randomNumber = Math.random();

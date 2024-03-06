@@ -1,0 +1,46 @@
+<div class="red-hat">
+  <div
+    class="flex items-center justify-center gap-8 mx-auto lg:max-w-[90%] flex-wrap py-16"
+  >
+    @for (category of categories; track $index) {
+    <div
+      class="bg-[#2c2c2c] drop-shadow-xl p-4 h-full min-h-56 w-full max-w-[32rem] relative flex flex-col justify-between"
+    >
+      @if (category.isSelected) {
+      <div
+        class="absolute flex items-center justify-center w-8 h-8 font-extrabold bg-green-600 rounded-full -top-4 -left-4"
+      >
+        <p>X</p>
+      </div>
+      }
+      <div class="flex justify-between">
+        <div>
+          <h2 class="pb-4 text-3xl font-extrabold">{{ category.title }}</h2>
+          <p class="text-lg font-semibold">
+            {{ category.subline }}
+          </p>
+        </div>
+        <div
+          class="flex items-center justify-center w-16 h-16 p-4 text-2xl border-2 border-white rounded-full"
+        >
+          <span>{{ category.questions_count }}</span>
+        </div>
+      </div>
+      <div>
+        <p class="text-lg text-center">Primjer pitanja</p>
+        <div class="text-center">
+          <span class="opacity-60">{{ category.question_example }}</span>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  <div class="flex justify-center">
+    <button
+      class="text-2xl uppercase font-bold red-hat bg-gradient-to-r from-red-400 to-indigo-500 text-[#212121] px-6 py-2 rounded-full transition-all hover:scale-125 duration-500"
+      (click)="this.manager.addStartStep()"
+    >
+      Pogledaj opcije
+    </button>
+  </div>
+</div>
