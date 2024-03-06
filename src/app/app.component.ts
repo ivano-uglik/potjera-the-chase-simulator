@@ -10,6 +10,7 @@ import { StartingPositionBarListComponent } from './starting-position-bar-list/s
 import { GameOverComponent } from './game-over/game-over.component';
 import { AppManagerService } from './app-manager.service';
 import { VictoryComponent } from './victory/victory.component';
+import { ButtonComponent } from './button/button.component';
 
 @Component({
   selector: 'app-root',

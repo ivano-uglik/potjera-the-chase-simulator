@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { QuestionProviderService } from '../question-provider.service';
 import { AppManagerService } from '../app-manager.service';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'question-categories',
   standalone: true,
-  imports: [],
+  imports: [ButtonComponent],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css',
 })
