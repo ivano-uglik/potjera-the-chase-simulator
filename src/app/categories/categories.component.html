@@ -2,17 +2,16 @@
   <div
     class="flex items-center justify-center gap-8 mx-auto lg:max-w-[90%] flex-wrap py-16"
   >
-    @for (category of categories; track $index) {
+    @for (category of categoryManager.categories; track $index) {
     <div
-      class="bg-[#2c2c2c] drop-shadow-xl p-4 h-full min-h-56 w-full max-w-[32rem] relative flex flex-col justify-between"
+      class="bg-[#2c2c2c] drop-shadow-xl p-4 h-full min-h-56 w-full max-w-[32rem] relative flex flex-col justify-between cursor-pointer hover:scale-105 transition-all ease-in-out duration-200"
     >
-      @if (category.isSelected) {
       <div
         class="absolute flex items-center justify-center w-8 h-8 font-extrabold bg-green-600 rounded-full -top-4 -left-4"
+        [class.hidden]="true"
       >
         <p>X</p>
       </div>
-      }
       <div class="flex justify-between">
         <div>
           <h2 class="pb-4 text-3xl font-extrabold">{{ category.title }}</h2>

@@ -1,16 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { AppManagerService } from '../app-manager.service';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-next-step',
   standalone: true,
-  imports: [],
-  template: `<button
-    class="py-4 bg-blue-500 my-4 min-w-64 font-bold uppercase text-white text-2xl"
-    (click)="this.manager.nextQuestion(); this.manager.setQuestionView()"
-  >
-    @if (this.manager.question === 0) { Započni igru } @else {Sljedeći korak}
-  </button>`,
+  imports: [ButtonComponent],
+  template: `<div class="pt-8">
+    <button-rainbow
+      (click)="this.manager.nextQuestion(); this.manager.setQuestionView()"
+    >
+      @if (this.manager.question === 0) { Započni igru } @else {Sljedeći korak}
+    </button-rainbow>
+  </div>`,
 })
 export class NextStepComponent {
   manager = inject(AppManagerService);
