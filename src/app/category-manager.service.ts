@@ -1,70 +1,61 @@
-import {
-  Injectable,
-  Signal,
-  inject,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { Injectable, inject, signal, WritableSignal } from '@angular/core';
 import { QuestionProviderService } from './question-provider.service';
+import { CategoryInterface, QuestionsInterface } from '../types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryManagerService {
   questionsProvider = inject(QuestionProviderService);
-  questions = this.questionsProvider.questions;
-  localQuestions = 0;
-  triviaQuestions = 0;
-  geographyQuestions = 0;
-  scienceQuestions = 0;
-  historyQuestions = 0;
-
-  setLocalQuestions() {
-    for (let i = 0; i < this.questions.length; i++) {
-      if (this.questions[i].category === 'local') {
-        this.localQuestions++;
-      }
-    }
-    return this.localQuestions;
-  }
-  setTriviaQuestions() {
-    for (let i = 0; i < this.questions.length; i++) {
-      if (this.questions[i].category === 'trivia') {
-        this.triviaQuestions++;
-      }
-    }
-    return this.triviaQuestions;
-  }
-  setGeographyQuestions() {
-    for (let i = 0; i < this.questions.length; i++) {
-      if (this.questions[i].category === 'geography') {
-        this.geographyQuestions++;
-      }
-    }
-    return this.geographyQuestions;
-  }
-  setScienceQuestions() {
-    for (let i = 0; i < this.questions.length; i++) {
-      if (this.questions[i].category === 'science') {
-        this.scienceQuestions++;
-      }
-    }
-    return this.scienceQuestions;
-  }
-  setHistoryQuestions() {
-    for (let i = 0; i < this.questions.length; i++) {
-      if (this.questions[i].category === 'history') {
-        this.historyQuestions++;
-      }
-    }
-    return this.historyQuestions;
-  }
-
+  // creating a new questions array which includes only questions of the type that was selected in the categories screen
+  questions: QuestionsInterface[] = this.questionsProvider.questions;
   localSelected: WritableSignal<boolean> = signal(false);
   triviaSelected: WritableSignal<boolean> = signal(false);
   geographySelected: WritableSignal<boolean> = signal(false);
   scienceSelected: WritableSignal<boolean> = signal(false);
   historySelected: WritableSignal<boolean> = signal(false);
+  selectedQuestions: QuestionsInterface[] = [];
+  addSelectedQuestions() {
+    if (this.localSelected()) {
+      this.selectedQuestions.push(...this.getLocalQuestions());
+    }
+    if (this.triviaSelected()) {
+      this.selectedQuestions.push(...this.getTriviaQuestions());
+    }
+    if (this.geographySelected()) {
+      this.selectedQuestions.push(...this.getGeographyQuestions());
+    }
+    if (this.scienceSelected()) {
+      this.selectedQuestions.push(...this.getScienceQuestions());
+    }
+    if (this.historySelected()) {
+      this.selectedQuestions.push(...this.getHistoryQuestions());
+    }
+    console.log(this.selectedQuestions);
+    console.log(this.questions);
+  }
+  getLocalQuestions() {
+    return this.questions.filter((question) => question.category === 'local');
+  }
+
+  getTriviaQuestions() {
+    return this.questions.filter((question) => question.category === 'trivia');
+  }
+
+  getGeographyQuestions() {
+    return this.questions.filter(
+      (question) => question.category === 'geography'
+    );
+  }
+
+  getScienceQuestions() {
+    return this.questions.filter((question) => question.category === 'science');
+  }
+
+  getHistoryQuestions() {
+    return this.questions.filter((question) => question.category === 'history');
+  }
+
   handleClick(category: CategoryInterface) {
     switch (category.title) {
       case 'Lokalno':
@@ -90,7 +81,7 @@ export class CategoryManagerService {
     {
       title: 'Lokalno',
       subline: 'Aktualni događaji i pitanja iz lokalne kulture.',
-      questions_count: this.setLocalQuestions(),
+      questions_count: this.getLocalQuestions().length,
       question_example:
         'U studenom 2022. u okružju Apatina pojavilo se više viđanja ove opasne životinje. O kojoj životinji je riječ?',
       isSelected: this.localSelected(),
@@ -98,7 +89,7 @@ export class CategoryManagerService {
     {
       title: 'Trivia',
       subline: 'Pitanja rijetko korisnih, ali zanimljivih informacija.',
-      questions_count: this.setTriviaQuestions(),
+      questions_count: this.getTriviaQuestions().length,
       question_example:
         'Koje je godine samoborska kremšnita postala zastićeno nematerijalno kulturno dobro?',
       isSelected: this.triviaSelected(),
@@ -106,7 +97,7 @@ export class CategoryManagerService {
     {
       title: 'Geografija',
       subline: 'Pitanja o zemljopisnim podatcima i lokacijama širom svijeta.',
-      questions_count: this.setGeographyQuestions(),
+      questions_count: this.getGeographyQuestions().length,
       question_example:
         '1971. otvorena je 1. hrvatska autocesta na dionici koja povezuje Kikovicu i koje mjesto?',
       isSelected: this.geographySelected(),
@@ -114,7 +105,7 @@ export class CategoryManagerService {
     {
       title: 'Znanost',
       subline: 'Pitanja o fenomenima i dostignućima u znanosti.',
-      questions_count: this.setScienceQuestions(),
+      questions_count: this.getScienceQuestions().length,
       question_example:
         'Zemlja ima tri sloja koji se razlikuju zbog različitih temperatura. Koja su njezina tri sloja?',
       isSelected: this.scienceSelected(),
@@ -122,18 +113,10 @@ export class CategoryManagerService {
     {
       title: 'Povijest',
       subline: 'Od Rimljana do danas',
-      questions_count: this.setHistoryQuestions(),
+      questions_count: this.getHistoryQuestions().length,
       question_example:
         'Ova životinja bila je prva ikada lansirana u svemir. Bio je priključen na sovjetsku svemirsku letjelicu Sputnik 2, koja je poslana u svemir 3. studenog 1957. Kako se zvao?',
       isSelected: this.historySelected(),
     },
   ];
-}
-
-interface CategoryInterface {
-  title: string;
-  subline: string;
-  questions_count: number;
-  question_example: string;
-  isSelected: boolean;
 }

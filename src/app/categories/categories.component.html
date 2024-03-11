@@ -41,7 +41,10 @@
     }
   </div>
   <div class="flex justify-center">
-    <button-rainbow (click)="this.manager.addStartStep()"
+    <button-rainbow
+      (click)="
+        this.manager.addStartStep(); this.categoryManager.addSelectedQuestions()
+      "
       >Pogledaj opcije</button-rainbow
     >
   </div>

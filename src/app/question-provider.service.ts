@@ -1,13 +1,14 @@
 import { Injectable, inject } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { AppManagerService } from './app-manager.service';
+import { QuestionsInterface } from '../types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuestionProviderService {
   manager = inject(AppManagerService);
-  questions = [
+  questions: QuestionsInterface[] = [
     {
       type: 'multiple',
       difficulty: 'medium',
