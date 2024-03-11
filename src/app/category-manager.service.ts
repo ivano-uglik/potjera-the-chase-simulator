@@ -1,4 +1,10 @@
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  Signal,
+  inject,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { QuestionProviderService } from './question-provider.service';
 
 @Injectable({
@@ -54,20 +60,40 @@ export class CategoryManagerService {
     return this.historyQuestions;
   }
 
-  localSelected = false;
-  triviaSelected = false;
-  geographySelected = false;
-  scienceSelected = false;
-  historySelected = false;
-
-  categories = [
+  localSelected: WritableSignal<boolean> = signal(false);
+  triviaSelected: WritableSignal<boolean> = signal(false);
+  geographySelected: WritableSignal<boolean> = signal(false);
+  scienceSelected: WritableSignal<boolean> = signal(false);
+  historySelected: WritableSignal<boolean> = signal(false);
+  handleClick(category: CategoryInterface) {
+    switch (category.title) {
+      case 'Lokalno':
+        this.localSelected.set(!this.localSelected());
+        break;
+      case 'Trivia':
+        this.triviaSelected.set(!this.triviaSelected());
+        break;
+      case 'Geografija':
+        this.geographySelected.set(!this.geographySelected());
+        break;
+      case 'Znanost':
+        this.scienceSelected.set(!this.scienceSelected());
+        break;
+      case 'Povijest':
+        this.historySelected.set(!this.historySelected());
+        break;
+      default:
+        break;
+    }
+  }
+  categories: CategoryInterface[] = [
     {
       title: 'Lokalno',
       subline: 'Aktualni događaji i pitanja iz lokalne kulture.',
       questions_count: this.setLocalQuestions(),
       question_example:
         'U studenom 2022. u okružju Apatina pojavilo se više viđanja ove opasne životinje. O kojoj životinji je riječ?',
-      isSelected: this.localSelected,
+      isSelected: this.localSelected(),
     },
     {
       title: 'Trivia',
@@ -75,7 +101,7 @@ export class CategoryManagerService {
       questions_count: this.setTriviaQuestions(),
       question_example:
         'Koje je godine samoborska kremšnita postala zastićeno nematerijalno kulturno dobro?',
-      isSelected: this.triviaSelected,
+      isSelected: this.triviaSelected(),
     },
     {
       title: 'Geografija',
@@ -83,7 +109,7 @@ export class CategoryManagerService {
       questions_count: this.setGeographyQuestions(),
       question_example:
         '1971. otvorena je 1. hrvatska autocesta na dionici koja povezuje Kikovicu i koje mjesto?',
-      isSelected: this.geographySelected,
+      isSelected: this.geographySelected(),
     },
     {
       title: 'Znanost',
@@ -91,7 +117,7 @@ export class CategoryManagerService {
       questions_count: this.setScienceQuestions(),
       question_example:
         'Zemlja ima tri sloja koji se razlikuju zbog različitih temperatura. Koja su njezina tri sloja?',
-      isSelected: this.scienceSelected,
+      isSelected: this.scienceSelected(),
     },
     {
       title: 'Povijest',
@@ -99,7 +125,15 @@ export class CategoryManagerService {
       questions_count: this.setHistoryQuestions(),
       question_example:
         'Ova životinja bila je prva ikada lansirana u svemir. Bio je priključen na sovjetsku svemirsku letjelicu Sputnik 2, koja je poslana u svemir 3. studenog 1957. Kako se zvao?',
-      isSelected: this.historySelected,
+      isSelected: this.historySelected(),
     },
   ];
+}
+
+interface CategoryInterface {
+  title: string;
+  subline: string;
+  questions_count: number;
+  question_example: string;
+  isSelected: boolean;
 }
