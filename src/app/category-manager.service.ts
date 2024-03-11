@@ -31,8 +31,6 @@ export class CategoryManagerService {
     if (this.historySelected()) {
       this.selectedQuestions.push(...this.getHistoryQuestions());
     }
-    console.log(this.selectedQuestions);
-    console.log(this.questions);
   }
   getLocalQuestions() {
     return this.questions.filter((question) => question.category === 'local');
@@ -119,4 +117,8 @@ export class CategoryManagerService {
       isSelected: this.historySelected(),
     },
   ];
+
+  returnSelectedQuestions() {
+    return this.questionsProvider.shuffleQuestions(this.selectedQuestions);
+  }
 }

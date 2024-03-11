@@ -3,6 +3,7 @@ import { QuestionProviderService } from '../question-provider.service';
 import { AppManagerService } from '../app-manager.service';
 import { BarManagerService } from '../bar-manager.service';
 import { FirebaseService } from '../firebase.service';
+import { CategoryManagerService } from '../category-manager.service';
 
 @Component({
   selector: 'app-question',
@@ -12,12 +13,11 @@ import { FirebaseService } from '../firebase.service';
   styleUrl: './question.component.css',
 })
 export class QuestionComponent {
-  injectQuestions = inject(QuestionProviderService);
-  callQuestions = this.injectQuestions.getQuestions();
-  questions = this.callQuestions;
   manager = inject(AppManagerService);
   barManager = inject(BarManagerService);
+  categoryManager = inject(CategoryManagerService);
   questionsService = inject(FirebaseService);
+  questions = this.categoryManager.returnSelectedQuestions();
   ngOnInit(): void {
     this.questionsService.getQuestionsCollection().subscribe((questions) => {
       this.questionsService = questions;
