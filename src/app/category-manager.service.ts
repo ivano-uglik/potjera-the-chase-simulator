@@ -7,13 +7,12 @@ import { CategoryInterface, QuestionsInterface } from '../types';
 })
 export class CategoryManagerService {
   questionsProvider = inject(QuestionProviderService);
-  // creating a new questions array which includes only questions of the type that was selected in the categories screen
   questions: QuestionsInterface[] = this.questionsProvider.questions;
-  localSelected: WritableSignal<boolean> = signal(false);
-  triviaSelected: WritableSignal<boolean> = signal(false);
-  geographySelected: WritableSignal<boolean> = signal(false);
-  scienceSelected: WritableSignal<boolean> = signal(false);
-  historySelected: WritableSignal<boolean> = signal(false);
+  localSelected: WritableSignal<boolean> = signal(true);
+  triviaSelected: WritableSignal<boolean> = signal(true);
+  geographySelected: WritableSignal<boolean> = signal(true);
+  scienceSelected: WritableSignal<boolean> = signal(true);
+  historySelected: WritableSignal<boolean> = signal(true);
   selectedQuestions: QuestionsInterface[] = [];
   addSelectedQuestions() {
     if (this.localSelected()) {
@@ -29,6 +28,19 @@ export class CategoryManagerService {
       this.selectedQuestions.push(...this.getScienceQuestions());
     }
     if (this.historySelected()) {
+      this.selectedQuestions.push(...this.getHistoryQuestions());
+    }
+    if (
+      !this.localSelected() &&
+      !this.triviaSelected() &&
+      !this.geographySelected() &&
+      !this.scienceSelected() &&
+      !this.historySelected()
+    ) {
+      this.selectedQuestions.push(...this.getLocalQuestions());
+      this.selectedQuestions.push(...this.getTriviaQuestions());
+      this.selectedQuestions.push(...this.getGeographyQuestions());
+      this.selectedQuestions.push(...this.getScienceQuestions());
       this.selectedQuestions.push(...this.getHistoryQuestions());
     }
   }

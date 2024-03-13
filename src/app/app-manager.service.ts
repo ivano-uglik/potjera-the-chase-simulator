@@ -30,4 +30,7 @@ export class AppManagerService {
   setQuestionView() {
     this.questionView = !this.questionView;
   }
+  reloadPage() {
+    window.location.reload();
+  }
 }

@@ -51,4 +51,9 @@ export class QuestionComponent {
       this.barManager.addChaserDown();
     }
   }
+  handleReport() {
+    alert(
+      'Ova značajka je work in progress. U međuvremenu, molimo da sve žalbe uputite upravi vodovoda.'
+    );
+  }
 }

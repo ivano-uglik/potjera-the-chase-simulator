@@ -12,7 +12,11 @@
     </h1>
     <div class="flex justify-center py-8">
       <button-rainbow
-        (click)="this.manager.setWon(); this.manager.setStartStep(0)"
+        (click)="
+          this.manager.setWon();
+          this.manager.setStartStep(0);
+          this.manager.reloadPage()
+        "
         >Nova igra</button-rainbow
       >
     </div>
