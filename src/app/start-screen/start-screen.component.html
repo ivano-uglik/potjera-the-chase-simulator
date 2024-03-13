@@ -1,7 +1,8 @@
 <div
   class="absolute top-0 left-0 z-50 grid w-screen min-h-screen px-4 text-white place-items-center"
 >
-  <div [class.hidden]="this.manager.startStep !== 0">
+  @if (this.manager.startStep == 0) {
+  <div>
     <h1 class="text-5xl font-[900] text-center red-hat pb-8">
       Dobrodošli na
       <span
@@ -22,10 +23,8 @@
       >
     </div>
   </div>
-  <div
-    [class.hidden]="this.manager.startStep !== 1"
-    class="max-w-[48rem] flex flex-col gap-8 text-lg"
-  >
+  } @if (this.manager.startStep == 1) {
+  <div class="max-w-[48rem] flex flex-col gap-8 text-lg">
     <h1
       class="font-[900] text-center red-hat text-5xl text-transparent bg-gradient-to-r from-red-400 to-indigo-500 bg-clip-text py-2"
     >
@@ -65,10 +64,16 @@
       </button>
     </div>
   </div>
-  <div [class.hidden]="this.manager.startStep !== 2">
+  } @if (this.manager.startStep == 2) {
+  <div>
     <question-categories></question-categories>
   </div>
-  <div [class.hidden]="this.manager.startStep !== 3">
+  } @if (this.manager.startStep == 3) {
+  <div>
+    <question-difficulty></question-difficulty>
+  </div>
+  } @if (this.manager.startStep == 4) {
+  <div>
     <ul class="inline-flex flex-col gap-1 border-8 border-black">
       <app-bar></app-bar>
       <button (click)="barManager.higher(); this.manager.addStartStep()">
@@ -85,4 +90,5 @@
       <app-bar></app-bar>
     </ul>
   </div>
+  }
 </div>

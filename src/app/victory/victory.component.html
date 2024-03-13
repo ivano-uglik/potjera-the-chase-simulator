@@ -11,14 +11,7 @@
       </span>
     </h1>
     <div class="flex justify-center py-8">
-      <button-rainbow
-        (click)="
-          this.manager.setWon();
-          this.manager.setStartStep(0);
-          this.manager.reloadPage()
-        "
-        >Nova igra</button-rainbow
-      >
+      <button-rainbow (click)="this.manager.setWon()">Nova igra</button-rainbow>
     </div>
   </div>
 </div>

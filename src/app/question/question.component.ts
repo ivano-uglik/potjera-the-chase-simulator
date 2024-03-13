@@ -4,6 +4,7 @@ import { AppManagerService } from '../app-manager.service';
 import { BarManagerService } from '../bar-manager.service';
 import { FirebaseService } from '../firebase.service';
 import { CategoryManagerService } from '../category-manager.service';
+import { DifficultyManagerService } from '../difficulty-manager.service';
 
 @Component({
   selector: 'app-question',
@@ -16,8 +17,9 @@ export class QuestionComponent {
   manager = inject(AppManagerService);
   barManager = inject(BarManagerService);
   categoryManager = inject(CategoryManagerService);
+  difficultyManager = inject(DifficultyManagerService);
   questionsService = inject(FirebaseService);
-  questions = this.categoryManager.returnSelectedQuestions();
+  questions = this.difficultyManager.returnSelectedDifficulty();
   ngOnInit(): void {
     this.questionsService.getQuestionsCollection().subscribe((questions) => {
       this.questionsService = questions;

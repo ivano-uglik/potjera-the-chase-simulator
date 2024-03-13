@@ -16,21 +16,17 @@ export class AppManagerService {
   setGameOver() {
     console.log('game over');
     this.isGameOver = !this.isGameOver;
+    window.location.reload();
   }
   setWon() {
     console.log('Victory!');
     this.isWon = !this.isWon;
-  }
-  setStartStep(value: number) {
-    this.startStep = value;
+    window.location.reload();
   }
   nextQuestion() {
     this.question++;
   }
   setQuestionView() {
     this.questionView = !this.questionView;
-  }
-  reloadPage() {
-    window.location.reload();
   }
 }

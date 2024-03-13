@@ -1,7 +1,7 @@
 <div class="bg-[#202124] min-h-screen min-w-screen">
-  @if(!(this.manager.startStep > 3)) {
+  @if(!(this.manager.startStep > 4)) {
   <app-start-screen></app-start-screen>
-  } @else if (this.manager.startStep > 3 && !this.manager.isGameOver &&
+  } @else if (this.manager.startStep > 4 && !this.manager.isGameOver &&
   !this.manager.isWon) {
   <div class="flex flex-col items-center justify-center">
     <div class="flex gap-4 py-4">

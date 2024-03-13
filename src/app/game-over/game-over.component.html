@@ -10,12 +10,7 @@
       </span>
     </h1>
     <div class="flex justify-center py-8">
-      <button-rainbow
-        (click)="
-          this.manager.setGameOver();
-          this.manager.setStartStep(0);
-          this.manager.reloadPage()
-        "
+      <button-rainbow (click)="this.manager.setGameOver()"
         >Nova igra</button-rainbow
       >
     </div>

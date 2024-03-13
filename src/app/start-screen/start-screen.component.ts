@@ -5,6 +5,7 @@ import { BarManagerService } from '../bar-manager.service';
 import { AppManagerService } from '../app-manager.service';
 import { CategoriesComponent } from '../categories/categories.component';
 import { ButtonComponent } from '../button/button.component';
+import { DifficultyComponent } from '../difficulty/difficulty.component';
 
 @Component({
   selector: 'app-start-screen',
@@ -14,6 +15,7 @@ import { ButtonComponent } from '../button/button.component';
     BarComponent,
     CategoriesComponent,
     ButtonComponent,
+    DifficultyComponent,
   ],
   templateUrl: './start-screen.component.html',
   styleUrl: './start-screen.component.css',
